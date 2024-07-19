@@ -11,11 +11,16 @@ Rectangle {
     LayoutMirroring.childrenInherit: true
 
     property int sessionIndex: session.index
+    property string selectedUser: ""
 
     TextConstants { id: textConstants }
 
+    function selectUser(username) {
+        selectedUser = username
+    } 
+
     function loginAction(password) {
-        sddm.login(userModel.lastUser, password, sessionIndex)
+        sddm.login(selectedUser, password, sessionIndex)
     }
 
 
@@ -60,28 +65,21 @@ Rectangle {
             anchors.fill: parent
             spacing: 25
 
-            Avatar {}
-
-            Text {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: userModel.lastUser
-                color: "white"
-                font.pixelSize : 36
+            UsersList {
+                onSelect: container.selectUser
+                visible: container.selectedUser === ""
+                width: parent.width
+                height: 150
             }
 
-            PasswordInput {
-                onSubmit: container.loginAction
-            }
 
-            Text {
-                id: errorMessage
-                text: ""
-                color: "white"
-                font.pixelSize: 24
+            Login {
+                visible: container.selectedUser !== ""
+                selectedUser: container.selectedUser
+                width: parent.width
             }
-
+                
             PowerButtons {}
-
         }
     }
 }

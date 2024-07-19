@@ -1,24 +1,26 @@
 import QtQuick 2.2
 
 Item {
-    width: 172
-    height: 172
+    property int size
+
+    width: size
+    height: size
     anchors.horizontalCenter: parent.horizontalCenter
 
     ShaderEffect {
         anchors.centerIn: parent
-        width: 172
-        height: 172
+        width: size
+        height: size
 
         property variant source: ShaderEffectSource {
             sourceItem: Image {
                 source: "../images/person.png" // TODO: get the user avatar
-                width: 172
-                height: 172
+                width: size
+                height: size
                 fillMode: Image.PreserveAspectCrop
             }
-            width: 172
-            height: 172
+            width: size
+            height: size
         }
 
         fragmentShader: "
