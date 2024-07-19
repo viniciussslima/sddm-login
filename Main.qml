@@ -23,6 +23,10 @@ Rectangle {
         sddm.login(selectedUser, password, sessionIndex)
     }
 
+    function removeSelectedUser() {        
+        selectedUser = ""
+    }
+
 
     Connections {
         target: sddm
@@ -75,8 +79,9 @@ Rectangle {
 
             Login {
                 visible: container.selectedUser !== ""
-                selectedUser: container.selectedUser
                 width: parent.width
+                selectedUser: container.selectedUser
+                onCancel: container.removeSelectedUser
             }
                 
             PowerButtons {}
