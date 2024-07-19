@@ -15,7 +15,7 @@ Rectangle {
     TextConstants { id: textConstants }
 
     function loginAction(password) {
-        sddm.login("viniciussslima", password, sessionIndex)
+        sddm.login(userModel.lastUser, password, sessionIndex)
     }
 
 
@@ -64,7 +64,7 @@ Rectangle {
 
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: "viniciussslima"
+                text: userModel.lastUser
                 color: "white"
                 font.pixelSize : 36
             }
