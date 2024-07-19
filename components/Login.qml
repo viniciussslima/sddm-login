@@ -8,7 +8,12 @@ Column {
     spacing: 25
 
     property string selectedUser
+    property var onSubmit
     property var onCancel
+
+    function handleLogin(password) {
+        onSubmit(password)
+    }
 
     Avatar {
         size: 172
@@ -22,7 +27,7 @@ Column {
     }
 
     PasswordInput {
-        onSubmit: container.loginAction
+        onSubmit: handleLogin
     }
 
     Text {

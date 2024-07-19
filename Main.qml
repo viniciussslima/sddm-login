@@ -81,6 +81,7 @@ Rectangle {
                 visible: container.selectedUser !== ""
                 width: parent.width
                 selectedUser: container.selectedUser
+                onSubmit: container.loginAction
                 onCancel: container.removeSelectedUser
             }
                 
