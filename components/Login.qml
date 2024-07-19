@@ -12,13 +12,13 @@ Rectangle {
 
     anchors.centerIn: parent
 
+    function handleLogin(password) {
+        onSubmit(password)
+    }
+
     Column {
         anchors.centerIn: parent
         spacing: 25
-
-        function handleLogin(password) {
-            onSubmit(password)
-        }
 
         Avatar {
             size: 172
