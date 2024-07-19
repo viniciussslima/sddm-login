@@ -5,7 +5,8 @@ import "./components"
 
 Rectangle {
     id: container
-    anchors.fill : parent
+    anchors.fill: parent
+    color: "#27292C"
 
     LayoutMirroring.enabled: Qt.locale().textDirection == Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
@@ -48,44 +49,19 @@ Rectangle {
         }
     }
 
-    Background {
-        anchors.fill: parent
-        source: config.background
-        fillMode: Image.PreserveAspectCrop
-        onStatusChanged: {
-            if (status == Image.Error && source != config.defaultBackground) {
-                source = config.defaultBackground
-            }
+
+    Content {
+        UsersList {
+            onSelect: container.selectUser
+            visible: container.selectedUser === ""
         }
-    }
-
-    Rectangle {
-        anchors.right: parent.right; anchors.verticalCenter: parent.verticalCenter; anchors.rightMargin : 110 
-        width: 500
-        height: 500
-        color: "transparent"
-
-        Column {
-            anchors.fill: parent
-            spacing: 25
-
-            UsersList {
-                onSelect: container.selectUser
-                visible: container.selectedUser === ""
-                width: parent.width
-                height: 150
-            }
-
-
-            Login {
-                visible: container.selectedUser !== ""
-                width: parent.width
-                selectedUser: container.selectedUser
-                onSubmit: container.loginAction
-                onCancel: container.removeSelectedUser
-            }
-                
-            PowerButtons {}
+    
+        Login {
+            visible: container.selectedUser !== ""
+            width: parent.width
+            selectedUser: container.selectedUser
+            onSubmit: container.loginAction
+            onCancel: container.removeSelectedUser
         }
     }
 }

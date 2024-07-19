@@ -4,50 +4,55 @@ import QtQuick.Controls 2.15
 
 import "."
 
-Column {
-    spacing: 25
-
+Rectangle {
     property string selectedUser
     property var onSubmit
     property var onCancel
 
-    function handleLogin(password) {
-        onSubmit(password)
-    }
+    anchors.centerIn: parent
 
-    Avatar {
-        size: 172
-    }
+    Column {
+        anchors.centerIn: parent
+        spacing: 25
 
-    Text {
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: selectedUser
-        color: "white"
-        font.pixelSize : 36
-    }
+        function handleLogin(password) {
+            onSubmit(password)
+        }
 
-    PasswordInput {
-        onSubmit: handleLogin
-    }
+        Avatar {
+            size: 172
+        }
 
-    Text {
-        id: errorMessage
-        text: ""
-        color: "white"
-        font.pixelSize: 24
-    }
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: selectedUser
+            color: "white"
+            font.pixelSize : 36
+        }
 
-    Text {
-        text: "Back to user selection"
-        color: "#2F80ED"
-        font.pixelSize: 16
-        font.underline: true
+        PasswordInput {
+            onSubmit: handleLogin
+        }
 
-        MouseArea {
-            anchors.fill: parent
-            cursorShape: Qt.PointingHandCursor
-            onClicked: {
-                onCancel()
+        Text {
+            id: errorMessage
+            text: ""
+            color: "white"
+            font.pixelSize: 24
+        }
+
+        Text {
+            text: "Go back to user selection"
+            color: "#2F80ED"
+            font.pixelSize: 16
+            font.underline: true
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    onCancel()
+                }
             }
         }
     }

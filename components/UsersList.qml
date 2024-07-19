@@ -1,17 +1,22 @@
 import QtQuick 2.0
+import SddmComponents 2.0
 
 import "."
 
 ListView {
+    property var onSelect
+    property int itemWidth: 150
+
+    id: list
+    model: userModel
     orientation: ListView.Horizontal
+    anchors.centerIn: parent
+    width: itemWidth * model.count
     spacing: 5
 
-    property var onSelect
-
-    model: userModel
     delegate: Rectangle {
-        width: 150
-        height: 150
+        width: list.itemWidth
+        height: list.itemWidth
         color: "transparent"
 
         Column {
