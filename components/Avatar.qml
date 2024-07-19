@@ -2,6 +2,7 @@ import QtQuick 2.2
 
 Item {
     property int size
+    property string imageSource
 
     width: size
     height: size
@@ -14,7 +15,7 @@ Item {
 
         property variant source: ShaderEffectSource {
             sourceItem: Image {
-                source: "../images/person.png" // TODO: get the user avatar
+                source: imageSource
                 width: size
                 height: size
                 fillMode: Image.PreserveAspectCrop

@@ -12,20 +12,23 @@ Rectangle {
     LayoutMirroring.childrenInherit: true
 
     property int sessionIndex: session.index
-    property string selectedUser: ""
+    property string selectedUsername: ""
+    property string selectedUserIcon: ""
 
     TextConstants { id: textConstants }
 
-    function selectUser(username) {
-        selectedUser = username
+    function selectUser(username, icon) {
+        selectedUsername = username
+        selectedUserIcon= icon
     } 
 
     function loginAction(password) {
-        sddm.login(selectedUser, password, sessionIndex)
+        sddm.login(selectedUsername, password, sessionIndex)
     }
 
     function removeSelectedUser() {        
-        selectedUser = ""
+        selectedUsername = ""
+        selectedUserIcon= ""
     }
 
 
@@ -53,13 +56,14 @@ Rectangle {
     Content {
         UsersList {
             onSelect: container.selectUser
-            visible: container.selectedUser === ""
+            visible: container.selectedUsername === ""
         }
     
         Login {
-            visible: container.selectedUser !== ""
+            visible: container.selectedUsername !== ""
             width: parent.width
-            selectedUser: container.selectedUser
+            selectedUsername: container.selectedUsername
+            selectedUserIcon: container.selectedUserIcon
             onSubmit: container.loginAction
             onCancel: container.removeSelectedUser
         }

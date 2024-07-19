@@ -5,7 +5,8 @@ import QtQuick.Controls 2.15
 import "."
 
 Rectangle {
-    property string selectedUser
+    property string selectedUsername
+    property string selectedUserIcon
     property var onSubmit
     property var onCancel
 
@@ -21,11 +22,12 @@ Rectangle {
 
         Avatar {
             size: 172
+            imageSource: selectedUserIcon
         }
 
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: selectedUser
+            text: selectedUsername
             color: "white"
             font.pixelSize : 36
         }

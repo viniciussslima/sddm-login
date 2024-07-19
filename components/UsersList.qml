@@ -25,6 +25,7 @@ ListView {
 
             Avatar {
                 size: 100
+                imageSource: icon
             }
 
             Text {
@@ -40,7 +41,7 @@ ListView {
             height: parent.height
             cursorShape: Qt.PointingHandCursor
             onClicked: {
-                onSelect(name)
+                onSelect(name, icon)
             }
         }
     }
