@@ -12,7 +12,7 @@ Item {
 
         property variant source: ShaderEffectSource {
             sourceItem: Image {
-                source: "../images/user.png"
+                source: "../images/person.png" // TODO: get the user avatar
                 width: 172
                 height: 172
                 fillMode: Image.PreserveAspectCrop
